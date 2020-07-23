@@ -92,7 +92,9 @@ const DetailsStackScreen = ({ navigation: { goBack } }) => (
     />
   </detailsMoviestack.Navigator>
 );
-
+/**
+ * Funcion para inizialirar temas del aplicativo
+ */
 const Init = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
@@ -117,7 +119,7 @@ const Init = () => {
       text: customColors.grayDefault,
     },
   };
-
+  // variable con el tema elegido
   const theme = !isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
 
   /**

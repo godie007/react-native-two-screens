@@ -120,15 +120,20 @@ const stylesList = StyleSheet.create({
   textTitle: {
     padding: 10,
     fontWeight: 'bold',
+    color:"#b6bbc0",
+    left:70
   },
   textSee: {
     padding: 10,
     textAlign: 'right',
+    color:"#6f7883",
+    left:40
   },
   titleMovie: {
     marginTop: 8,
     width: 120,
     fontWeight: 'bold',
+    color:'#b6bbc0'
   },
   imageMovie: {
     borderRadius: 20,

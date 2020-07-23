@@ -39,13 +39,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 20,
-    width:400
+    width:380,
+    left:45
   },
   scroll: {
     flexGrow: 1,
   },
   viewFlex: {
     flex: 1,
+    right:60
   },
   viewRow: {
     flex: 1,
