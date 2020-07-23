@@ -31,3 +31,4 @@ cd android
 gradlew clean
 gradlew assembleRelease
 ```
+![Demo](src/assets/images/demo.jpg)
