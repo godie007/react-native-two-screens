@@ -60,7 +60,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  moviesTopRated:PropTypes.array,
+  moviesTopRated:PropTypes.object,
   actions : PropTypes.object.isRequired,
 };
 export default Home
