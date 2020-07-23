@@ -1,29 +1,29 @@
-import 'react-native-gesture-handler';
-import React, { useState } from 'react';
-import { Provider as StoreProvider } from 'react-redux';
-import configureStore from './store';
-import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler'
+import React, { useState } from 'react'
+import { Provider as StoreProvider } from 'react-redux'
+import configureStore from './store'
+import { createStackNavigator } from '@react-navigation/stack'
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
-  DarkTheme as NavigationDarkTheme,
-} from '@react-navigation/native';
+  DarkTheme as NavigationDarkTheme
+} from '@react-navigation/native'
 import {
   Provider as PaperProvider,
   DefaultTheme as PaperDefaultTheme,
-  DarkTheme as PaperDarkTheme,
-} from 'react-native-paper';
+  DarkTheme as PaperDarkTheme
+} from 'react-native-paper'
 
-import Home from './containers/Home';
-import detailsMovies from './containers/DetailsMovies';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { FloatingAction } from 'react-native-floating-action';
-import { customColors } from './constants/colors';
+import Home from './containers/Home'
+import detailsMovies from './containers/DetailsMovies'
+import Icon from 'react-native-vector-icons/Ionicons'
+import { FloatingAction } from 'react-native-floating-action'
+import { customColors } from './constants/colors'
 
-const detailsMoviestack = createStackNavigator();
-const HomeStack = createStackNavigator();
-const store = configureStore({});
-const StackHome = createStackNavigator();
+const detailsMoviestack = createStackNavigator()
+const HomeStack = createStackNavigator()
+const store = configureStore({})
+const StackHome = createStackNavigator()
 
 /**
  * StackScreen para la navegación de la página principal
@@ -33,23 +33,23 @@ const HomeStackScreen = ({ navigation }) => (
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: customColors.blueHeader,
+        backgroundColor: customColors.blueHeader
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
-        fontWeight: 'bold',
-      },
+        fontWeight: 'bold'
+      }
     }}>
     <HomeStack.Screen
       name="home"
       component={Home}
       options={{
         headerTitle: false,
-        headerTransparent: true,
+        headerTransparent: true
       }}
     />
   </HomeStack.Navigator>
-);
+)
 
 /**
  * StackScreen para la navegación de la página de detalles
@@ -59,12 +59,12 @@ const DetailsStackScreen = ({ navigation: { goBack } }) => (
   <detailsMoviestack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#1f65ff',
+        backgroundColor: '#1f65ff'
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
-        fontWeight: 'bold',
-      },
+        fontWeight: 'bold'
+      }
     }}>
     <detailsMoviestack.Screen
       name="Details"
@@ -87,16 +87,16 @@ const DetailsStackScreen = ({ navigation: { goBack } }) => (
             size={30}
             onPress={() => { }}
           />
-        ),
+        )
       }}
     />
   </detailsMoviestack.Navigator>
-);
+)
 /**
  * Funcion para inizialirar temas del aplicativo
  */
 const Init = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
 
   const CustomDefaultTheme = {
     ...NavigationDefaultTheme,
@@ -105,9 +105,9 @@ const Init = () => {
       ...NavigationDefaultTheme.colors,
       ...PaperDefaultTheme.colors,
       background: customColors.grayDefault,
-      text: customColors.blueNavegation,
-    },
-  };
+      text: customColors.blueNavegation
+    }
+  }
 
   const CustomDarkTheme = {
     ...NavigationDarkTheme,
@@ -116,17 +116,17 @@ const Init = () => {
       ...NavigationDarkTheme.colors,
       ...PaperDarkTheme.colors,
       background: customColors.blueNavegation,
-      text: customColors.grayDefault,
-    },
-  };
+      text: customColors.grayDefault
+    }
+  }
   // variable con el tema elegido
-  const theme = !isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
+  const theme = !isDarkTheme ? CustomDarkTheme : CustomDefaultTheme
 
   /**
    * Funcion para intercambiar el tema de de oscuro/claro
    */
-  function toggleTheme() {
-    setIsDarkTheme((isDark) => !isDark);
+  function toggleTheme () {
+    setIsDarkTheme((isDark) => !isDark)
   }
 
   const FloatingMenu = (
@@ -136,14 +136,14 @@ const Init = () => {
           text: 'Change Appearance',
           icon: require('./assets/images/ligth.png'),
           name: 'bt_accessibility',
-          position: 2,
-        },
+          position: 2
+        }
       ]}
       onPressItem={() => {
-        toggleTheme();
+        toggleTheme()
       }}
     />
-  );
+  )
 
   return (
     <StoreProvider store={store}>
@@ -165,7 +165,7 @@ const Init = () => {
         {FloatingMenu}
       </PaperProvider>
     </StoreProvider>
-  );
-};
+  )
+}
 
-export default Init;
+export default Init

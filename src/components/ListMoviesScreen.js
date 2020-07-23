@@ -1,40 +1,40 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import {
   View,
   StyleSheet,
   Image,
   FlatList,
-  TouchableWithoutFeedback,
-} from 'react-native';
-import {Text} from 'react-native-paper';
+  TouchableWithoutFeedback
+} from 'react-native'
+import { Text } from 'react-native-paper'
 
-import Stars from 'react-native-stars';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import styles from './styles/General';
-import {customColors} from '../constants/colors';
+import Stars from 'react-native-stars'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import styles from './styles/General'
+import { customColors } from '../constants/colors'
 
 export default class List extends Component {
   /**
    * Al momento de precionar en una pelicula se navega al detalle de la pelicula
    * @param {*} movieId
    */
-  async _handlerClick(movieId) {
-    this.props.actions.getMovie(movieId);
-    this.props.navigation.navigate('detailsMovies');
+  async _handlerClick (movieId) {
+    this.props.actions.getMovie(movieId)
+    this.props.navigation.navigate('detailsMovies')
   }
 
   /**
    * funcion para generar cada pelicula en cada lista principal
    * @param {*} item
    */
-  renderItem(item) {
+  renderItem (item) {
     return (
       <TouchableWithoutFeedback onPress={() => this._handlerClick(item.id)}>
         <View key={item.id}>
           <Image
             style={stylesList.imageMovie}
             source={{
-              uri: item.poster_path,
+              uri: item.poster_path
             }}
           />
           <Text style={stylesList.titleMovie}>{item.original_title}</Text>
@@ -71,11 +71,11 @@ export default class List extends Component {
           />
         </View>
       </TouchableWithoutFeedback>
-    );
+    )
   }
 
-  render() {
-    const {movies, title} = this.props;
+  render () {
+    const { movies, title } = this.props
     return (
       <View style={styles.viewFlex}>
         <View>
@@ -88,24 +88,24 @@ export default class List extends Component {
             </View>
           </View>
           <FlatList
-            style={{paddingTop: 13}}
+            style={{ paddingTop: 13 }}
             keyExtractor={(item) => item.id.toString()}
             horizontal
-            ItemSeparatorComponent={() => <View style={{width: 18}} />}
-            renderItem={({item}) => this.renderItem(item)}
+            ItemSeparatorComponent={() => <View style={{ width: 18 }} />}
+            renderItem={({ item }) => this.renderItem(item)}
             data={
               movies && movies.results && movies.results.length > 0
                 ? movies.results.map((d) => {
-                    d.poster_path =
-                      'https://image.tmdb.org/t/p/w500' + d.poster_path;
-                    return d;
-                  })
+                  d.poster_path =
+                      'https://image.tmdb.org/t/p/w500' + d.poster_path
+                  return d
+                })
                 : []
             }
           />
         </View>
       </View>
-    );
+    )
   }
 }
 
@@ -114,30 +114,30 @@ const stylesList = StyleSheet.create({
     color: 'yellow',
     backgroundColor: 'transparent',
     textShadowColor: 'black',
-    textShadowOffset: {width: 1, height: 1},
-    textShadowRadius: 4,
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 4
   },
   textTitle: {
     padding: 10,
     fontWeight: 'bold',
-    color:"#b6bbc0",
-    left:70
+    color: '#b6bbc0',
+    left: 70
   },
   textSee: {
     padding: 10,
     textAlign: 'right',
-    color:"#6f7883",
-    left:40
+    color: '#6f7883',
+    left: 40
   },
   titleMovie: {
     marginTop: 8,
     width: 120,
     fontWeight: 'bold',
-    color:'#b6bbc0'
+    color: '#b6bbc0'
   },
   imageMovie: {
     borderRadius: 20,
     width: 120,
-    height: 180,
-  },
-});
+    height: 180
+  }
+})

@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   searchBar: {
@@ -8,14 +8,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 40,
     top: 30,
-    backgroundColor: '#8EBEE1',
+    backgroundColor: '#8EBEE1'
   },
   header: {
-    height: 230,
+    height: 230
   },
   containerPrincipal: {
     flex: 1,
-    backgroundColor: '#5CA1D4',
+    backgroundColor: '#5CA1D4'
   },
   textTitle: {
     top: 50,
@@ -24,14 +24,14 @@ const styles = StyleSheet.create({
     margin: 60,
     fontSize: 30,
     textAlign: 'center',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   containerMovies: {
     width: '100%',
     position: 'relative',
     height: '100%',
     borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
+    borderTopRightRadius: 25
   },
   centrar: {
     borderTopStartRadius: 20,
@@ -39,23 +39,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 20,
-    width:380,
-    left:45
+    width: 380,
+    left: 45
   },
   scroll: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   viewFlex: {
     flex: 1,
-    right:60
+    right: 60
   },
   viewRow: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   viewColumn: {
     flex: 1,
-    flexDirection: 'column',
-  },
-});
-export default styles;
+    flexDirection: 'column'
+  }
+})
+export default styles

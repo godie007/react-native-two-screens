@@ -1,59 +1,57 @@
-import React, { Component } from 'react';
-import { View, StatusBar, ScrollView, Image, FlatList } from 'react-native';
+import React, { Component } from 'react'
+import { View, StatusBar, ScrollView, Image, FlatList } from 'react-native'
 import {
   Title,
   Button,
   Caption,
   Text,
-  ActivityIndicator,
-} from 'react-native-paper';
-import Stars from 'react-native-stars';
-import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import styles from './styles/General';
-import * as c from '../constants';
-import { customColors } from '../constants/colors';
-import { stylesDetails } from './styles/DetailsMovies';
-
+  ActivityIndicator
+} from 'react-native-paper'
+import Stars from 'react-native-stars'
+import PropTypes from 'prop-types'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import styles from './styles/General'
+import * as c from '../constants'
+import { customColors } from '../constants/colors'
+import { stylesDetails } from './styles/DetailsMovies'
 
 // funcion para separar los generos de cada pelicula con el caracter comma
 const listGenres = (genres) =>
   genres && genres.length > 0
     ? genres.map((gender) => gender.name).join(', ')
-    : '';
+    : ''
 // funcion para separar las produciones de cada pelicula con el caracter comma
 const formatProduction = (production) =>
   production && production.length > 0
     ? production.map((studio) => studio.name).join(', ')
-    : '';
+    : ''
 
 class detailsMovies extends Component {
-  
-  componentWillUnmount() {
-    console.log('Entra');
-    let { actions: { listMoviesTopRated, listMoviesPopular } } = this.props
-    listMoviesTopRated();
-    listMoviesPopular();
+  componentWillUnmount () {
+    const { actions: { listMoviesTopRated, listMoviesPopular } } = this.props
+    listMoviesTopRated()
+    listMoviesPopular()
   }
+
   /**
    * Funcion para renderizar cada imagen de la lista de Peliculas
    * @param {*} item
    */
-  renderItem(item) {
+  renderItem (item) {
     const image = item.profile_path
       ? { uri: c.MOVIE_W500 + item.profile_path }
-      : require('../assets/images/default.png');
+      : require('../assets/images/default.png')
 
     return (
       <View key={item.cast_id}>
         <Image style={stylesDetails.imageProfile} source={image} />
         <Text style={stylesDetails.titleProfile}>{item.name}</Text>
       </View>
-    );
+    )
   }
 
-  render() {
-    let {
+  render () {
+    const {
       genres,
       credits,
       production_companies,
@@ -63,9 +61,9 @@ class detailsMovies extends Component {
       release_date,
       backdrop_path,
       theme,
-      isFetching,
-    } = this.props;
-    const { colors } = theme;
+      isFetching
+    } = this.props
+    const { colors } = theme
 
     return (
       <View>
@@ -74,7 +72,7 @@ class detailsMovies extends Component {
             <Image
               style={stylesDetails.image}
               source={{
-                uri: c.MOVIE_ORIGINAL + backdrop_path,
+                uri: c.MOVIE_ORIGINAL + backdrop_path
               }}
             />
 
@@ -185,27 +183,27 @@ class detailsMovies extends Component {
             </ScrollView>
           </View>
         ) : (
-            <ActivityIndicator
-              color={'#0B41DE'}
-              size={'large'}
-              style={stylesDetails.indicator}
-            />
-          )}
+          <ActivityIndicator
+            color={'#0B41DE'}
+            size={'large'}
+            style={stylesDetails.indicator}
+          />
+        )}
       </View>
-    );
+    )
   }
 }
 detailsMovies.propTypes = {
-  actions : PropTypes.object.isRequired,
-  genres:PropTypes.array,
-  credits:PropTypes.array,
-  production_companies:PropTypes.array.isRequired,
-  original_title:PropTypes.string.isRequired,
-  overview:PropTypes.string,
-  vote_average:PropTypes.number,
-  release_date:PropTypes.string.isRequired,
-  backdrop_path:PropTypes.string.isRequired,
-  theme:PropTypes.object.isRequired,
-  isFetching:PropTypes.bool.isRequired,
-};
+  actions: PropTypes.object.isRequired,
+  genres: PropTypes.array,
+  credits: PropTypes.array,
+  production_companies: PropTypes.array.isRequired,
+  original_title: PropTypes.string.isRequired,
+  overview: PropTypes.string,
+  vote_average: PropTypes.number,
+  release_date: PropTypes.string.isRequired,
+  backdrop_path: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired,
+  isFetching: PropTypes.bool.isRequired
+}
 export default detailsMovies

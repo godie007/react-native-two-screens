@@ -1,23 +1,22 @@
-import React, {Component} from 'react';
-import {View, StatusBar, ScrollView} from 'react-native';
-import {Title, Searchbar} from 'react-native-paper';
-import ListMovies from '../containers/ListMovies';
-import styles from './styles/General';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { View, StatusBar, ScrollView } from 'react-native'
+import { Title, Searchbar } from 'react-native-paper'
+import ListMovies from '../containers/ListMovies'
+import styles from './styles/General'
+import PropTypes from 'prop-types'
 class Home extends Component {
-  
   /**
    * En el momento de iniciar el aplicativo se cargan el top de peliculas y
    * las peliculas mas populares
    */
-  componentDidMount() {
-    this.props.actions.listMoviesTopRated();
-    this.props.actions.listMoviesPopular();
+  componentDidMount () {
+    this.props.actions.listMoviesTopRated()
+    this.props.actions.listMoviesPopular()
   }
 
-  render() {
-    let {moviesTopRated, moviesPopular, theme} = this.props;
-    const {colors} = theme;
+  render () {
+    const { moviesTopRated, moviesPopular, theme } = this.props
+    const { colors } = theme
 
     return (
       <View style={styles.containerPrincipal}>
@@ -38,7 +37,7 @@ class Home extends Component {
           <View
             style={[
               styles.containerMovies,
-              {backgroundColor: colors.background},
+              { backgroundColor: colors.background }
             ]}>
             <View style={styles.centrar}>
               <ListMovies
@@ -55,12 +54,12 @@ class Home extends Component {
           </View>
         </ScrollView>
       </View>
-    );
+    )
   }
 }
 
 Home.propTypes = {
-  moviesTopRated:PropTypes.object,
-  actions : PropTypes.object.isRequired,
-};
+  moviesTopRated: PropTypes.object,
+  actions: PropTypes.object.isRequired
+}
 export default Home

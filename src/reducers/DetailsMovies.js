@@ -1,4 +1,4 @@
-import * as c from '../constants/index';
+import * as c from '../constants/index'
 
 const initialState = {
   credits: [],
@@ -9,18 +9,18 @@ const initialState = {
   vote_average: '',
   release_date: '',
   genres: []
-};
+}
 
-export default function form(state = initialState, action) {
+export default function form (state = initialState, action) {
   switch (action.type) {
     case c.HANDLER_SEARCH_MOVIE_SUCCESS:
       return {
         ...state,
-        ...action.payload,
-      };
+        ...action.payload
+      }
     case c.HANDLER_CLEAR_MOVIE:
-      return {...state, ...initialState};
+      return { ...state, ...initialState }
     default:
-      return state;
+      return state
   }
 }
