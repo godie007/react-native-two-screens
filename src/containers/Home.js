@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Home from '../components/Home';
+import Home from '../components/HomeScreen';
 import {listMoviesTopRated, listMoviesPopular} from '../actions/index';
 import {withTheme} from 'react-native-paper';
 

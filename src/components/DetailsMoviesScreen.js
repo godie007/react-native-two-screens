@@ -1,11 +1,5 @@
-import React, { Component } from 'react';
-import {
-  View,
-  StatusBar,
-  ScrollView,
-  Image,
-  FlatList,
-} from 'react-native';
+import React, {Component} from 'react';
+import {View, StatusBar, ScrollView, Image, FlatList} from 'react-native';
 import {
   Title,
   Button,
@@ -17,16 +11,21 @@ import Stars from 'react-native-stars';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles/General';
 import * as c from '../constants';
-import { customColors } from '../constants/colors';
-import { stylesDetails } from './styles/DetailsMovies';
+import {customColors} from '../constants/colors';
+import {stylesDetails} from './styles/DetailsMovies';
 export default class detailsMovies extends Component {
+  componentWillUnmount() {
+    console.log('Entra');
+    this.props.actions.listMoviesTopRated();
+    this.props.actions.listMoviesPopular();
+  }
   /**
    * Funcion para renderizar cada imagen de la lista de Peliculas
    * @param {*} item
    */
   _renderItem(item) {
     const image = item.profile_path
-      ? { uri: c.MOVIE_W500 + item.profile_path }
+      ? {uri: c.MOVIE_W500 + item.profile_path}
       : require('../assets/images/default.png');
 
     return (
@@ -50,7 +49,7 @@ export default class detailsMovies extends Component {
       theme,
       isFetching,
     } = this.props;
-    const { colors } = theme;
+    const {colors} = theme;
 
     return (
       <View>
@@ -66,7 +65,7 @@ export default class detailsMovies extends Component {
             <ScrollView contentContainerStyle={styles.scroll}>
               <StatusBar barStyle="default" />
               <View style={styles.viewRow}>
-                <View style={{ width: '80%' }}>
+                <View style={stylesDetails.titleOriginal}>
                   <Title style={stylesDetails.textTitle}>
                     {original_title}
                   </Title>
@@ -78,17 +77,17 @@ export default class detailsMovies extends Component {
                     name="video-4k-box"
                     backgroundColor="transparent"
                     size={30}
-                    onPress={() => { }}
+                    onPress={() => {}}
                   />
                 </View>
               </View>
               <View style={styles.viewRow}>
                 <View style={styles.viewFlex}>
                   <Button
-                    style={{ ...stylesDetails.btnWatch }}
+                    style={{...stylesDetails.btnWatch}}
                     color="#6B7480"
                     mode="contained"
-                    onPress={() => { }}>
+                    onPress={() => {}}>
                     WATCH NOW
                   </Button>
                 </View>
@@ -98,20 +97,41 @@ export default class detailsMovies extends Component {
                     count={5}
                     half={true}
                     starSize={6}
-                    fullStar={<Icon size={25} color={customColors.yellow} name={'star'} style={[styles.myStarStyle]} />}
-                    emptyStar={<Icon size={25} color={customColors.yellow} name={'star-outline'} style={[styles.myStarStyle, styles.myEmptyStarStyle]} />}
-                    halfStar={<Icon size={25} color={customColors.yellow} name={'star-half'} style={[styles.myStarStyle]} />}
+                    fullStar={
+                      <Icon
+                        size={25}
+                        color={customColors.yellow}
+                        name={'star'}
+                        style={[styles.myStarStyle]}
+                      />
+                    }
+                    emptyStar={
+                      <Icon
+                        size={25}
+                        color={customColors.yellow}
+                        name={'star-outline'}
+                        style={[styles.myStarStyle, styles.myEmptyStarStyle]}
+                      />
+                    }
+                    halfStar={
+                      <Icon
+                        size={25}
+                        color={customColors.yellow}
+                        name={'star-half'}
+                        style={[styles.myStarStyle]}
+                      />
+                    }
                   />
                 </View>
               </View>
               <View style={styles.viewColumn}>
                 <Caption style={stylesDetails.textCation}>{overview}</Caption>
-                <View style={{ margin: 15 }}>
+                <View style={{margin: 15}}>
                   <FlatList
                     keyExtractor={(item) => item.cast_id.toString()}
                     horizontal
-                    ItemSeparatorComponent={() => <View style={{ width: 30 }} />}
-                    renderItem={({ item }) => this._renderItem(item)}
+                    ItemSeparatorComponent={() => <View style={{width: 30}} />}
+                    renderItem={({item}) => this._renderItem(item)}
                     data={credits}
                   />
                 </View>
@@ -119,7 +139,7 @@ export default class detailsMovies extends Component {
                   <View>
                     <Title style={stylesDetails.textDetails}>Studio</Title>
                   </View>
-                  <View style={{ width: '80%' }}>
+                  <View style={{width: '80%'}}>
                     <Caption style={stylesDetails.textCationDetails}>
                       {formatProduction(production_companies)}
                     </Caption>
@@ -129,7 +149,7 @@ export default class detailsMovies extends Component {
                   <View>
                     <Title style={stylesDetails.textDetails}>Genre</Title>
                   </View>
-                  <View style={{ width: '85%', flex: 1 }}>
+                  <View style={{width: '85%', flex: 1}}>
                     <Caption style={stylesDetails.textCationDetails}>
                       {listGenres(genres)}
                     </Caption>
@@ -149,20 +169,24 @@ export default class detailsMovies extends Component {
             </ScrollView>
           </View>
         ) : (
-            <ActivityIndicator
-              color={'#0B41DE'}
-              size={'large'}
-              style={stylesDetails.indicator}
-            />
-          )}
+          <ActivityIndicator
+            color={'#0B41DE'}
+            size={'large'}
+            style={stylesDetails.indicator}
+          />
+        )}
       </View>
     );
   }
 }
 
 // funcion para separar los generos de cada pelicula con el caracter comma
-const listGenres = (genres) => genres && genres.length > 0 ? genres.map((gender) => gender.name).join(', ') : ''
+const listGenres = (genres) =>
+  genres && genres.length > 0
+    ? genres.map((gender) => gender.name).join(', ')
+    : '';
 // funcion para separar las produciones de cada pelicula con el caracter comma
-const formatProduction = (production)  => production && production.length > 0 ? production.map((studio) => studio.name).join(', ') : ''
-
-
+const formatProduction = (production) =>
+  production && production.length > 0
+    ? production.map((studio) => studio.name).join(', ')
+    : '';

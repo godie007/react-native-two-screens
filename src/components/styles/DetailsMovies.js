@@ -1,7 +1,10 @@
-import { StyleSheet } from 'react-native';
-export const stylesDetails = StyleSheet.create({
+import {StyleSheet} from 'react-native';
+let stylesheet = {
   viewRow: {
     flexDirection: 'row',
+  },
+  titleOriginal: {
+    width: '80%',
   },
   starStyle: {
     width: 100,
@@ -62,4 +65,5 @@ export const stylesDetails = StyleSheet.create({
     width: 80,
     textAlign: 'center',
   },
-});
+};
+export const stylesDetails = StyleSheet.create(stylesheet);

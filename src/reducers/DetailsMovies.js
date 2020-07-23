@@ -8,22 +8,17 @@ const initialState = {
   overview: '',
   vote_average: '',
   release_date: '',
-  genres: [],
-  isFetching: false,
+  genres: []
 };
 
 export default function form(state = initialState, action) {
   switch (action.type) {
-    case c.GET_MOVIE:
+    case c.HANDLER_SEARCH_MOVIE_SUCCESS:
       return {
         ...state,
         ...action.payload,
       };
-    case c.LOADING:
-      return {...state, isFetching: true};
-    case c.NOT_LOADING:
-      return {...state, isFetching: false};
-    case c.CLEAR_MOVIE:
+    case c.HANDLER_CLEAR_MOVIE:
       return {...state, ...initialState};
     default:
       return state;

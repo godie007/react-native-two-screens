@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import ListMovies from '../components/ListMovies';
+import ListMovies from '../components/ListMoviesScreen';
 import {getMovie} from '../actions/index';
 
 const mapDispatchToProps = (dispatch) => ({

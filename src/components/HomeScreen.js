@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { View, StatusBar, ScrollView } from 'react-native';
-import { Title, Searchbar } from 'react-native-paper';
+import React, {Component} from 'react';
+import {View, StatusBar, ScrollView} from 'react-native';
+import {Title, Searchbar} from 'react-native-paper';
 import ListMovies from '../containers/ListMovies';
 import styles from './styles/General';
 
 export default class Home extends Component {
   /**
-   * En el momento de iniciar el aplicativo se cargan el top de peliculas y 
+   * En el momento de iniciar el aplicativo se cargan el top de peliculas y
    * las peliculas mas populares
    */
   componentDidMount() {
@@ -15,8 +15,8 @@ export default class Home extends Component {
   }
 
   render() {
-    let { moviesTopRated, moviesPopular, theme } = this.props;
-    const { colors } = theme;
+    let {moviesTopRated, moviesPopular, theme} = this.props;
+    const {colors} = theme;
 
     return (
       <View style={styles.containerPrincipal}>
@@ -37,7 +37,7 @@ export default class Home extends Component {
           <View
             style={[
               styles.containerMovies,
-              { backgroundColor: colors.background },
+              {backgroundColor: colors.background},
             ]}>
             <View style={styles.centrar}>
               <ListMovies

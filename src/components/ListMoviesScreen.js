@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   View,
   StyleSheet,
@@ -6,12 +6,12 @@ import {
   FlatList,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { Text } from 'react-native-paper';
+import {Text} from 'react-native-paper';
 
 import Stars from 'react-native-stars';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles/General';
-import { customColors } from '../constants/colors';
+import {customColors} from '../constants/colors';
 
 export default class List extends Component {
   /**
@@ -40,13 +40,34 @@ export default class List extends Component {
           <Text style={stylesList.titleMovie}>{item.original_title}</Text>
 
           <Stars
-            default={parseInt((item.vote_average / 10) * 5)}
+            default={(item.vote_average / 10) * 5}
             count={5}
             half={true}
             starSize={6}
-            fullStar={<Icon size={20} color={customColors.yellow} name={'star'} style={[styles.myStarStyle]} />}
-            emptyStar={<Icon size={20} color={customColors.yellow} name={'star-outline'} style={[styles.myStarStyle, styles.myEmptyStarStyle]} />}
-            halfStar={<Icon size={20} color={customColors.yellow} name={'star-half'} style={[styles.myStarStyle]} />}
+            fullStar={
+              <Icon
+                size={20}
+                color={customColors.yellow}
+                name={'star'}
+                style={[styles.myStarStyle]}
+              />
+            }
+            emptyStar={
+              <Icon
+                size={20}
+                color={customColors.yellow}
+                name={'star-outline'}
+                style={[styles.myStarStyle, styles.myEmptyStarStyle]}
+              />
+            }
+            halfStar={
+              <Icon
+                size={20}
+                color={customColors.yellow}
+                name={'star-half'}
+                style={[styles.myStarStyle]}
+              />
+            }
           />
         </View>
       </TouchableWithoutFeedback>
@@ -54,7 +75,7 @@ export default class List extends Component {
   }
 
   render() {
-    const { movies, title } = this.props;
+    const {movies, title} = this.props;
     return (
       <View style={styles.viewFlex}>
         <View>
@@ -67,15 +88,20 @@ export default class List extends Component {
             </View>
           </View>
           <FlatList
-            style={{ paddingTop: 13 }}
+            style={{paddingTop: 13}}
             keyExtractor={(item) => item.id.toString()}
             horizontal
-            ItemSeparatorComponent={() => <View style={{ width: 18 }} />}
-            renderItem={({ item }) => this._renderItem(item)}
-            data={movies && movies.results && movies.results.length > 0 ? movies.results.map(d => {
-              d.poster_path = 'https://image.tmdb.org/t/p/w500' + d.poster_path
-              return d
-            }) : []}
+            ItemSeparatorComponent={() => <View style={{width: 18}} />}
+            renderItem={({item}) => this._renderItem(item)}
+            data={
+              movies && movies.results && movies.results.length > 0
+                ? movies.results.map((d) => {
+                    d.poster_path =
+                      'https://image.tmdb.org/t/p/w500' + d.poster_path;
+                    return d;
+                  })
+                : []
+            }
           />
         </View>
       </View>
@@ -88,7 +114,7 @@ const stylesList = StyleSheet.create({
     color: 'yellow',
     backgroundColor: 'transparent',
     textShadowColor: 'black',
-    textShadowOffset: { width: 1, height: 1 },
+    textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 4,
   },
   textTitle: {

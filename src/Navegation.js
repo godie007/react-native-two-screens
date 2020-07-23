@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { Provider as StoreProvider } from 'react-redux';
+import React, {useState} from 'react';
+import {Provider as StoreProvider} from 'react-redux';
 import configureStore from './store';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createStackNavigator, HeaderBackButton } from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack';
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
   DarkTheme as NavigationDarkTheme,
 } from '@react-navigation/native';
 import {
-  useTheme,
   Provider as PaperProvider,
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme,
@@ -18,8 +17,8 @@ import {
 import Home from './containers/Home';
 import detailsMovies from './containers/DetailsMovies';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { FloatingAction } from "react-native-floating-action";
-import { customColors } from './constants/colors';
+import {FloatingAction} from 'react-native-floating-action';
+import {customColors} from './constants/colors';
 
 const detailsMoviestack = createStackNavigator();
 const HomeStack = createStackNavigator();
@@ -30,7 +29,7 @@ const store = configureStore({});
  * StackScreen para la navegación de la página principal
  * @param {*} navigation
  */
-const HomeStackScreen = ({ navigation }) => (
+const HomeStackScreen = ({navigation}) => (
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
@@ -56,7 +55,7 @@ const HomeStackScreen = ({ navigation }) => (
  * StackScreen para la navegación de la página de detalles
  * @param {*} navigation
  */
-const DetailsStackScreen = ({ navigation: { goBack } }) => (
+const DetailsStackScreen = ({navigation: {goBack}}) => (
   <detailsMoviestack.Navigator
     screenOptions={{
       headerStyle: {
@@ -80,8 +79,8 @@ const DetailsStackScreen = ({ navigation: { goBack } }) => (
           <Icon.Button
             name="ios-heart-outline"
             backgroundColor="transparent"
-            size={25}
-            onPress={() => { }}
+            size={30}
+            onPress={() => {}}
           />
         ),
       }}
@@ -123,26 +122,31 @@ const Init = () => {
     setIsDarkTheme((isDark) => !isDark);
   }
 
-  const paperTheme = useTheme();
-  const FloatingMenu = <FloatingAction
-    actions={[
-      {
-        text: "Change Appearance",
-        icon: require("./assets/images/ligth.png"),
-        name: "bt_accessibility",
-        position: 2
-      }
-    ]}
-    onPressItem={() => {
-      toggleTheme();
-    } } />;
+  const FloatingMenu = (
+    <FloatingAction
+      actions={[
+        {
+          text: 'Change Appearance',
+          icon: require('./assets/images/ligth.png'),
+          name: 'bt_accessibility',
+          position: 2,
+        },
+      ]}
+      onPressItem={() => {
+        toggleTheme();
+      }}
+    />
+  );
   return (
     <StoreProvider store={store}>
       <PaperProvider theme={theme}>
         <NavigationContainer theme={theme}>
           <Drawer.Navigator>
             <Drawer.Screen name="Home" component={HomeStackScreen} />
-            <Drawer.Screen name="detailsMovies" component={DetailsStackScreen} />
+            <Drawer.Screen
+              name="detailsMovies"
+              component={DetailsStackScreen}
+            />
           </Drawer.Navigator>
         </NavigationContainer>
         {FloatingMenu}
