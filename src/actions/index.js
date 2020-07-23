@@ -22,6 +22,7 @@ export function listMoviesTopRated() {
         });
       }
     } catch (error) {
+      alert('Error en solicitud!')
       dispatch({
         type: c.HANDLER_LIST_TOP_OF_MOVIES_FAILURE,
       });
@@ -50,6 +51,7 @@ export function listMoviesPopular() {
         });
       }
     } catch (error) {
+      alert('Error en solicitud!')
       dispatch({
         type: c.HANDLER_LIST_MOVIES_POPULAR_FAILURE,
       });
@@ -96,6 +98,7 @@ export function getMovie(movieIdentity) {
         });
       }
     } catch (error) {
+      alert('Error en solicitud!')
       dispatch({
         type: c.HANDLER_SEARCH_DETAILS_MOVIE_FAILURE,
       });

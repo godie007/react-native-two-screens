@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {Provider as StoreProvider} from 'react-redux';
+import 'react-native-gesture-handler';
+import React, { useState } from 'react';
+import { Provider as StoreProvider } from 'react-redux';
 import configureStore from './store';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
@@ -17,19 +17,19 @@ import {
 import Home from './containers/Home';
 import detailsMovies from './containers/DetailsMovies';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {FloatingAction} from 'react-native-floating-action';
-import {customColors} from './constants/colors';
+import { FloatingAction } from 'react-native-floating-action';
+import { customColors } from './constants/colors';
 
 const detailsMoviestack = createStackNavigator();
 const HomeStack = createStackNavigator();
-const Drawer = createDrawerNavigator();
 const store = configureStore({});
+const StackHome = createStackNavigator();
 
 /**
  * StackScreen para la navegación de la página principal
  * @param {*} navigation
  */
-const HomeStackScreen = ({navigation}) => (
+const HomeStackScreen = ({ navigation }) => (
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
@@ -55,7 +55,7 @@ const HomeStackScreen = ({navigation}) => (
  * StackScreen para la navegación de la página de detalles
  * @param {*} navigation
  */
-const DetailsStackScreen = ({navigation: {goBack}}) => (
+const DetailsStackScreen = ({ navigation: { goBack } }) => (
   <detailsMoviestack.Navigator
     screenOptions={{
       headerStyle: {
@@ -73,14 +73,19 @@ const DetailsStackScreen = ({navigation: {goBack}}) => (
         headerTitle: false,
         headerTransparent: true,
         headerLeft: (props) => (
-          <HeaderBackButton {...props} onPress={() => goBack()} />
+          <Icon.Button
+            name="arrow-back"
+            backgroundColor="transparent"
+            size={30}
+            onPress={() => goBack()}
+          />
         ),
         headerRight: () => (
           <Icon.Button
             name="ios-heart-outline"
             backgroundColor="transparent"
             size={30}
-            onPress={() => {}}
+            onPress={() => { }}
           />
         ),
       }}
@@ -97,8 +102,8 @@ const Init = () => {
     colors: {
       ...NavigationDefaultTheme.colors,
       ...PaperDefaultTheme.colors,
-      background: '#f3f3f3',
-      text: '#2C3848',
+      background: customColors.grayDefault,
+      text: customColors.blueNavegation,
     },
   };
 
@@ -108,8 +113,8 @@ const Init = () => {
     colors: {
       ...NavigationDarkTheme.colors,
       ...PaperDarkTheme.colors,
-      background: '#2C3848',
-      text: '#f3f3f3',
+      background: customColors.blueNavegation,
+      text: customColors.grayDefault,
     },
   };
 
@@ -137,17 +142,23 @@ const Init = () => {
       }}
     />
   );
+
   return (
     <StoreProvider store={store}>
       <PaperProvider theme={theme}>
         <NavigationContainer theme={theme}>
-          <Drawer.Navigator>
-            <Drawer.Screen name="Home" component={HomeStackScreen} />
-            <Drawer.Screen
-              name="detailsMovies"
-              component={DetailsStackScreen}
+          <StackHome.Navigator>
+            <StackHome.Screen
+              name="Home"
+              component={HomeStackScreen}
+              options={{ title: 'Home', headerShown: false }}
             />
-          </Drawer.Navigator>
+            <StackHome.Screen name="detailsMovies" component={DetailsStackScreen}
+              options={{
+                headerShown: false
+              }}
+            />
+          </StackHome.Navigator>
         </NavigationContainer>
         {FloatingMenu}
       </PaperProvider>

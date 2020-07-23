@@ -11,7 +11,23 @@ La información de las películas que van en ese diseño debe venir desde esta a
 
 | Puntos a evaluar | Estado |
 |--|--|
-| Usar react Hooks y Redux | no |
-| Usar CSS en JS, por ejemplo como styled-components, JSS etc... | no |
-| Usar eslint, standard y/o prettier. | no |
+| Usar react Hooks y Redux | listo |
+| Usar CSS en JS, por ejemplo como styled-components, JSS etc... | listo |
+| Usar eslint, standard y/o prettier. | listo |
 | No usar ningún boilerplate ni starter tales como create-react-app | listo |
+
+# Comandos utiles
+instalar dependencias
+```bash
+yarn
+```
+correr proyecto
+```
+npm run android
+```
+generar APK
+```
+cd android
+gradlew clean
+gradlew assembleRelease
+```

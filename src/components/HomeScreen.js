@@ -3,8 +3,9 @@ import {View, StatusBar, ScrollView} from 'react-native';
 import {Title, Searchbar} from 'react-native-paper';
 import ListMovies from '../containers/ListMovies';
 import styles from './styles/General';
-
-export default class Home extends Component {
+import PropTypes from 'prop-types';
+class Home extends Component {
+  
   /**
    * En el momento de iniciar el aplicativo se cargan el top de peliculas y
    * las peliculas mas populares
@@ -57,3 +58,9 @@ export default class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  moviesTopRated:PropTypes.array,
+  actions : PropTypes.object.isRequired,
+};
+export default Home

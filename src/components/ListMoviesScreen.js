@@ -27,7 +27,7 @@ export default class List extends Component {
    * funcion para generar cada pelicula en cada lista principal
    * @param {*} item
    */
-  _renderItem(item) {
+  renderItem(item) {
     return (
       <TouchableWithoutFeedback onPress={() => this._handlerClick(item.id)}>
         <View key={item.id}>
@@ -92,7 +92,7 @@ export default class List extends Component {
             keyExtractor={(item) => item.id.toString()}
             horizontal
             ItemSeparatorComponent={() => <View style={{width: 18}} />}
-            renderItem={({item}) => this._renderItem(item)}
+            renderItem={({item}) => this.renderItem(item)}
             data={
               movies && movies.results && movies.results.length > 0
                 ? movies.results.map((d) => {

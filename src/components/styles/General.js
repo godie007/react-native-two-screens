@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 20,
+    width:400
   },
   scroll: {
     flexGrow: 1,
