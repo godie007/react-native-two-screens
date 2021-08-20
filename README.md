@@ -1,4 +1,4 @@
-# Prueba tecnica **imaginamos.com**
+# Ejemplo React Native
 
 La prueba consiste en construir el diseño de **2 pantallas** implementando el Tema Light y Dark de las aplicaciones
 
