@@ -17,7 +17,7 @@
     "@react-navigation/drawer": "^5.8.5",
     "@react-navigation/native": "^5.7.0",
     "@react-navigation/stack": "^5.7.0",
-    "@reduxjs/toolkit": "^1.4.0",
+    "@reduxjs/toolkit": "^1.9.7",
     "axios": "^0.30.0",
     "react": "16.13.1",
     "react-native": "0.81.4",
